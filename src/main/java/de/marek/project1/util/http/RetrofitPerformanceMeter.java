@@ -2,15 +2,16 @@ package de.marek.project1.util.http;
 
 /**
  * Retrofit profiler that reports the duration and count of requests grouped by HTTP status code
- *
+ * <p>
  * This class measures ONLY valid responses
  * (200 or 500 responses are valid, if the content is received in time and can be parsed by retrofit)
- *
+ * <p>
  * This profiler is NOT called for network timeouts or response parse errors. It would not make sense anyway,
  * since there is no HTTP code in these cases. Use the retrofit error handler or the MonitoringProxy to measure
  * these situations.
  */
-public class RetrofitPerformanceMeter {} /*implements Profiler {
+public class RetrofitPerformanceMeter {
+} /*implements Profiler {
 
     private static final Logger logger = LoggerFactory.getLogger(RetrofitPerformanceMeter.class);
 

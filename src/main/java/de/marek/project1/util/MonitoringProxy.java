@@ -1,26 +1,23 @@
 package de.marek.project1.util;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import com.codahale.metrics.Counter;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
+import com.google.common.reflect.AbstractInvocationHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import rx.Observable;
 
+import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 
-import javax.servlet.Servlet;
-import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.codahale.metrics.Counter;
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.Timer;
-import com.google.common.reflect.AbstractInvocationHandler;
-
-import rx.Observable;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 @SuppressWarnings("PMD.TooManyMethods")
 public class MonitoringProxy<T> extends AbstractInvocationHandler {
@@ -40,6 +37,18 @@ public class MonitoringProxy<T> extends AbstractInvocationHandler {
         this.transformer = transformer;
         this.successMonitor = successMonitor;
         this.failureMonitor = failureMonitor;
+    }
+
+    public static <T> Builder<T> builder() {
+        return new Builder<>();
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> T of(T src, MonitoringProxy<T> m) {
+        return (T) Proxy.newProxyInstance(
+                src.getClass().getClassLoader(),
+                src.getClass().getInterfaces(),
+                m);
     }
 
     @Override
@@ -223,18 +232,6 @@ public class MonitoringProxy<T> extends AbstractInvocationHandler {
 
             return of(src, new MonitoringProxy<>(src, clazz, t, sm, fm));
         }
-    }
-
-    public static <T> Builder<T> builder() {
-        return new Builder<>();
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <T> T of(T src, MonitoringProxy<T> m) {
-        return (T) Proxy.newProxyInstance(
-                src.getClass().getClassLoader(),
-                src.getClass().getInterfaces(),
-                m);
     }
 }
 

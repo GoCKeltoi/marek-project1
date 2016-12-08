@@ -1,12 +1,11 @@
 package de.marek.project1.util.http;
 
-import java.io.IOException;
-
+import okhttp3.Interceptor;
+import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import okhttp3.Interceptor;
-import okhttp3.Response;
+import java.io.IOException;
 
 public class RequestResponseLogger implements Interceptor {
 

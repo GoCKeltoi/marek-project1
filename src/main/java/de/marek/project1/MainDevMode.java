@@ -1,9 +1,9 @@
 package de.marek.project1;
 
+import com.google.common.io.Resources;
+
 import java.io.IOException;
 import java.util.Properties;
-
-import com.google.common.io.Resources;
 
 public class MainDevMode {
 

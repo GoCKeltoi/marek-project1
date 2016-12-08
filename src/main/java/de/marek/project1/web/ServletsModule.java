@@ -1,16 +1,12 @@
 package de.marek.project1.web;
 
-import javax.inject.Singleton;
-
-import com.codahale.metrics.MetricRegistry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import dagger.Module;
 import dagger.Provides;
-
-import de.marek.project1.indexer.FullIndexBuilder;
 import de.marek.project1.Route;
+
+import javax.inject.Singleton;
 
 @Module
 public class ServletsModule {
@@ -22,13 +18,14 @@ public class ServletsModule {
 
     @Provides(type = Provides.Type.SET)
     Route provideReleaseInfo() {
-        return new Route("/internal/release-info", new ReleaseInfoServlet() {});
+        return new Route("/internal/release-info", new ReleaseInfoServlet() {
+        });
     }
 
-    @Provides(type = Provides.Type.SET)
-    Route provideRecreateIndex(FullIndexBuilder reindexer, MetricRegistry mr) {
-        return new Route("/internal/reindex", new ReIndexServlet(reindexer, mr));
-    }
+//    @Provides(type = Provides.Type.SET)
+//    Route provideRecreateIndex(FullIndexBuilder reindexer, MetricRegistry mr) {
+//        return new Route("/internal/reindex", new ReIndexServlet(reindexer, mr));
+//    }
 
     @Provides
     @Singleton

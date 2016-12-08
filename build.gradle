@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'checkstyle'
     id 'idea'
+    id 'eclipse'
     id 'pmd'
     id 'findbugs'
     id 'com.github.johnrengelman.shadow' version '1.2.3'

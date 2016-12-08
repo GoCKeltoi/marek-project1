@@ -1,7 +1,6 @@
 package de.marek.project1.util;
 
 import com.codahale.metrics.health.HealthCheck;
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

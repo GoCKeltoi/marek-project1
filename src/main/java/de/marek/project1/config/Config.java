@@ -1,8 +1,7 @@
 package de.marek.project1.config;
 
-import java.util.Optional;
-
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 public final class Config {
 

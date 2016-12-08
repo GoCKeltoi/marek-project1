@@ -1,10 +1,10 @@
 package de.marek.project1.server;
 
-import static com.google.common.base.Throwables.propagate;
-
 import de.marek.project1.App;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
+
+import static com.google.common.base.Throwables.propagate;
 
 class TomcatApp implements App {
 

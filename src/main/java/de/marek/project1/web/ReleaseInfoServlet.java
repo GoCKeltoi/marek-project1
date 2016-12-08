@@ -1,15 +1,14 @@
 package de.marek.project1.web;
 
-import java.io.IOException;
-import java.io.InputStream;
+import com.google.common.io.ByteStreams;
+import com.google.common.io.Resources;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.common.io.ByteStreams;
-import com.google.common.io.Resources;
+import java.io.IOException;
+import java.io.InputStream;
 
 class ReleaseInfoServlet extends HttpServlet {
 

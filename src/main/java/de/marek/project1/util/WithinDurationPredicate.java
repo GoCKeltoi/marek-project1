@@ -1,10 +1,10 @@
 package de.marek.project1.util;
 
+import com.google.common.base.Stopwatch;
+
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
-
-import com.google.common.base.Stopwatch;
 
 public class WithinDurationPredicate implements Predicate {
 

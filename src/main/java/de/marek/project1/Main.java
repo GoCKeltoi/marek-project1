@@ -1,12 +1,10 @@
 package de.marek.project1;
 
 
+import com.codahale.metrics.health.HealthCheckRegistry;
+import de.marek.project1.config.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.codahale.metrics.health.HealthCheckRegistry;
-
-import de.marek.project1.config.Config;
 
 public class Main {
 
@@ -16,19 +14,8 @@ public class Main {
 
         final IndexerComponent app = DaggerIndexerComponent.create();
 
-        new Thread(() -> logHealthStatus(app.healthCheckRegistry())).start();
-
         // start tomcat
         app.webserver().start();
-
-        final Thread continuous = new Thread(() -> app.continuousIndexer().start(), "realtime-indexer");
-        continuous.start();
-
-        if (!Config.isProd()) {
-            app.fullIndexBuilder().fullIndex();
-        }
-
-        continuous.join();
     }
 
     private static void logHealthStatus(HealthCheckRegistry health) {

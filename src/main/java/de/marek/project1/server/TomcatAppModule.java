@@ -1,23 +1,19 @@
 package de.marek.project1.server;
 
-import java.io.File;
-import java.util.Set;
-import java.util.function.BiConsumer;
-
-import javax.inject.Singleton;
-
+import com.google.common.io.Files;
+import dagger.Module;
+import dagger.Provides;
+import de.marek.project1.App;
+import de.marek.project1.Route;
+import de.marek.project1.config.Config;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
-import com.google.common.io.Files;
-
-import dagger.Module;
-import dagger.Provides;
-
-import de.marek.project1.App;
-import de.marek.project1.Route;
-import de.marek.project1.config.Config;
+import javax.inject.Singleton;
+import java.io.File;
+import java.util.Set;
+import java.util.function.BiConsumer;
 
 
 @Module
